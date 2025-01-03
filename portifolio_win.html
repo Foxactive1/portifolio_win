@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Estilo Windows</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+            /* Estilo geral */
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(to bottom right, #1e90ff, #87cefa);
+                height: 100vh;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            /* Área de trabalho */
+            .desktop {
+                flex: 1;
+                display: flex;
+                flex-wrap: wrap;
+                align-content: flex-start;
+                justify-content: center;
+                padding: 10px;
+                gap: 20px;
+            }
+            
+            /* Ícones do desktop */
+            .desktop-icon {
+                width: 80px;
+                text-align: center;
+                color: white;
+                margin: 10px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .desktop-icon i {
+                font-size: 36px;
+                margin-bottom: 5px;
+            }
+            
+            .desktop-icon span {
+                font-size: 12px;
+            }
+            
+            /* Janela */
+            .window {
+                position: absolute;
+                top: 10%;
+                left: 10%;
+                width: 80%;
+                height: 70%;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                display: none;
+                flex-direction: column;
+                resize: both;
+                overflow: auto;
+            }
+            
+            .window-header {
+                background: #1e90ff;
+                color: white;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                cursor: move;
+            }
+            
+            .window-header img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            
+            .window-header .controls span {
+                margin-left: 5px;
+                cursor: pointer;
+                color: white;
+                padding: 5px;
+                border-radius: 50%;
+            }
+            
+            .window-header .controls span:hover {
+                background: rgba(255, 255, 255, 0.3);
+            }
+            
+            .window-content {
+                padding: 20px;
+                flex: 1;
+                overflow-y: auto;
+            }
+            
+            #about h2 {
+                margin-top: 0;
+            }
+            
+            /* Barra de tarefas */
+            .taskbar {
+                height: 50px;
+                background: #333;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+            
+            .taskbar .start-menu {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+            
+            .taskbar .start-menu i {
+                font-size: 24px;
+                margin-right: 10px;
+            }
+            
+            .taskbar .clock {
+                font-size: 16px;
+            }
+            
+            /* Menu iniciar */
+            .start-menu-content {
+                position: absolute;
+                bottom: 60px;
+                left: 20px;
+                width: 200px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                display: none;
+                flex-direction: column;
+            }
+            
+            .start-menu-content button {
+                background: none;
+                border: none;
+                padding: 10px;
+                text-align: left;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            
+            .start-menu-content button:hover {
+                background: #1e90ff;
+                color: white;
+            }
+    </style>
+</head>
+
+<body>
+    <!-- Área de trabalho -->
+    <div class="desktop">
+        <div class="desktop-icon" onclick="openWindow('sobre')">
+            <i class="bx bx-user"></i>
+            <span>Sobre mim</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('projetos')">
+            <i class="bx bx-folder"></i>
+            <span>Projetos</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('certificacoes')">
+            <i class="bx bx-certification"></i>
+            <span>Certificações</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('habilidades')">
+            <i class="bx bx-brain"></i>
+            <span>Habilidades</span>
+        </div>
+    </div>
+
+    <!-- Janelas --><div id="sobre-mim" class="window">
+    <div class="window-header">
+        <img src="sua-imagem.jpg" alt="Imagem de Dione Castro Alves" class="window-image">
+        <span>Sobre Mim</span>
+        <div class="controls">
+            <span onclick="closeWindow('sobre-mim')">✕</span>
+        </div>
+    </div>
+    <div class="window-content">
+        <section id="about" class="about">
+            <h2>Sobre Mim</h2>
+            <p>Olá! Sou <strong>Dione Castro Alves</strong>, especialista em desenvolvimento de software, inovação tecnológica e soluções personalizadas. Como fundador da <strong>InNovaIdeia</strong>, ajudo empresas a alcançar seu máximo potencial por meio da tecnologia, oferecendo consultoria, treinamento e desenvolvimento de soluções que impactam.</p>
+            <p>Tenho ampla experiência com tecnologias como Python, Flask, React, Docker e bancos de dados como SQLite e PostgreSQL. Também aplico inteligência artificial ao varejo, personalizando experiências e prevendo tendências. Meu objetivo é sempre oferecer soluções inovadoras e escaláveis que transformem ideias em realidade.</p>
+        </section>
+    </div>
+</div>
+
+<div id="projetos" class="window">
+    <div class="window-header">
+        <span>Projetos</span>
+        <div class="controls">
+            <span onclick="closeWindow('projetos')">✕</span>
+        </div>
+    </div>
+    <div class="window-content">
+        <section id="projects" class="projects">
+            <h2>Meus Projetos</h2>
+
+            <div class="project-card">
+                <button onclick="toggleDescription(this)">Gerenciador de Funcionários</button>
+                <div class="description" style="display: none;">
+                    <p>Gerenciador de Dados dos Funcionários em Python usando Tkinter e SQLite.</p>
+                    <a href="https://github.com/Foxactive1/Projeto" target="_blank">Ver no GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <button onclick="toggleDescription(this)">Sistema Bancário em Python</button>
+                <div class="description" style="display: none;">
+                    <p>Sistema Bancário Simples desenvolvido em Python para gerenciamento básico de contas.</p>
+                    <a href="https://github.com/Foxactive1/banco" target="_blank">Ver no GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <button onclick="toggleDescription(this)">Lista de Tarefas em HTML</button>
+                <div class="description" style="display: none;">
+                    <p>Aplicação web simples de Lista de Tarefas, construída utilizando HTML, CSS (com Bootstrap) e JavaScript.</p>
+                    <a href="https://github.com/Foxactive1/HTML-E-CIA/tree/main/Lista_de_tarefas" target="_blank">Ver no GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <button onclick="toggleDescription(this)">Knowledge-Base-API</button>
+                <div class="description" style="display: none;">
+                    <p>Aplicação em Flask para consultar informações sobre linguagens de programação.</p>
+                    <a href="https://github.com/Foxactive1/Knowledge-Base-API" target="_blank">Ver no GitHub</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    function toggleDescription(button) {
+        const description = button.nextElementSibling;
+        const isVisible = description.style.display === 'block';
+        description.style.display = isVisible ? 'none' : 'block';
+    }
+</script>
+
+    <div id="certificacoes" class="window">
+        <div class="window-header">
+            <span>Certificações</span>
+            <div class="controls">
+                <span onclick="closeWindow('certificacoes')">✕</span>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="content">
+                <ul>
+                    <li>Certificação 1: Desenvolvimento Full Stack.</li>
+                    <li>Certificação 2: Análise de Dados com Python.</li>
+                    <li>Certificação 3: Metodologias Ágeis.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="habilidades" class="window">
+        <div class="window-header">
+            <span>Habilidades</span>
+            <div class="controls">
+                <span onclick="closeWindow('habilidades')">✕</span>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="content">
+                <ul>
+                    <li>Programação em Python, JavaScript e PHP.</li>
+                    <li>Desenvolvimento Front-end e Back-end.</li>
+                    <li>Gestão de projetos e liderança.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de tarefas -->
+    <div class="taskbar">
+        <div class="start-menu" onclick="toggleStartMenu()">
+            <i class="bx bx-windows"></i>
+            <span>Iniciar</span>
+        </div>
+        <div class="clock" id="clock">00:00</div>
+    </div>
+
+    <!-- Menu iniciar -->
+    <div class="start-menu-content" id="start-menu">
+        <button onclick="openWindow('sobre')">Sobre mim</button>
+        <button onclick="openWindow('projetos')">Projetos</button>
+        <button onclick="openWindow('certificacoes')">Certificações</button>
+        <button onclick="openWindow('habilidades')">Habilidades</button>
+        <button onclick="desligar()">Desligar</button>
+    </div>
+
+    <script>
+        function openWindow(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeWindow(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function toggleStartMenu() {
+            const menu = document.getElementById('start-menu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function desligar() {
+            if (confirm("Deseja realmente desligar?")) {
+                window.close();
+            }
+        }
+    </script>
+</body>
+
+</html>
