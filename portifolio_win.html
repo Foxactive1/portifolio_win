@@ -6,167 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interface Estilo Windows</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
-            /* Estilo geral */
-            body {
-                margin: 0;
-                padding: 0;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                background: linear-gradient(to bottom right, #1e90ff, #87cefa);
-                height: 100vh;
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-            }
-            
-            /* Área de trabalho */
-            .desktop {
-                flex: 1;
-                display: flex;
-                flex-wrap: wrap;
-                align-content: flex-start;
-                justify-content: center;
-                padding: 10px;
-                gap: 20px;
-            }
-            
-            /* Ícones do desktop */
-            .desktop-icon {
-                width: 80px;
-                text-align: center;
-                color: white;
-                margin: 10px;
-                cursor: pointer;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .desktop-icon i {
-                font-size: 36px;
-                margin-bottom: 5px;
-            }
-            
-            .desktop-icon span {
-                font-size: 12px;
-            }
-            
-            /* Janela */
-            .window {
-                position: absolute;
-                top: 10%;
-                left: 10%;
-                width: 80%;
-                height: 70%;
-                background: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-                display: none;
-                flex-direction: column;
-                resize: both;
-                overflow: auto;
-            }
-            
-            .window-header {
-                background: #1e90ff;
-                color: white;
-                padding: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
-                cursor: move;
-            }
-            
-            .window-header img {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                margin-right: 10px;
-            }
-            
-            .window-header .controls span {
-                margin-left: 5px;
-                cursor: pointer;
-                color: white;
-                padding: 5px;
-                border-radius: 50%;
-            }
-            
-            .window-header .controls span:hover {
-                background: rgba(255, 255, 255, 0.3);
-            }
-            
-            .window-content {
-                padding: 20px;
-                flex: 1;
-                overflow-y: auto;
-            }
-            
-            #about h2 {
-                margin-top: 0;
-            }
-            
-            /* Barra de tarefas */
-            .taskbar {
-                height: 50px;
-                background: #333;
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 0 20px;
-            }
-            
-            .taskbar .start-menu {
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-            }
-            
-            .taskbar .start-menu i {
-                font-size: 24px;
-                margin-right: 10px;
-            }
-            
-            .taskbar .clock {
-                font-size: 16px;
-            }
-            
-            /* Menu iniciar */
-            .start-menu-content {
-                position: absolute;
-                bottom: 60px;
-                left: 20px;
-                width: 200px;
-                background: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-                display: none;
-                flex-direction: column;
-            }
-            
-            .start-menu-content button {
-                background: none;
-                border: none;
-                padding: 10px;
-                text-align: left;
-                cursor: pointer;
-                font-size: 16px;
-            }
-            
-            .start-menu-content button:hover {
-                background: #1e90ff;
-                color: white;
-            }
+        /* Estilo geral */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #1e90ff, #87cefa);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .desktop {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: center;
+            padding: 10px;
+            gap: 20px;
+        }
+
+        .desktop-icon {
+            width: 90px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .desktop-icon i {
+            font-size: 40px;
+            margin-bottom: 8px;
+            transition: transform 0.2s;
+        }
+
+        .desktop-icon span {
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .desktop-icon:hover {
+            transform: scale(1.1);
+            color: #f0f8ff;
+        }
+
+        .desktop-icon:hover i {
+            transform: rotate(10deg);
+            color: #ffeb3b;
+        }
+
+        .window {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 70%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            resize: both;
+            overflow: auto;
+        }
+
+        .window-header {
+            background: #1e90ff;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            cursor: move;
+        }
+
+        .window-content {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .taskbar {
+            height: 50px;
+            background: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .start-menu-content {
+            position: absolute;
+            bottom: 60px;
+            left: 20px;
+            width: 200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+        }
+
+        .start-menu-content button {
+            background: none;
+            border: none;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .start-menu-content button:hover {
+            background: #1e90ff;
+            color: white;
+        }
+
+        .project-button {
+            background: linear-gradient(to right, #4caf50, #81c784);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .project-button:hover {
+            background: linear-gradient(to right, #388e3c, #66bb6a);
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
 <body>
     <!-- Área de trabalho -->
     <div class="desktop">
-        <div class="desktop-icon" onclick="openWindow('sobre')">
+        <div class="desktop-icon" onclick="openWindow('sobre-mim')">
             <i class="bx bx-user"></i>
             <span>Sobre mim</span>
         </div>
@@ -175,7 +161,7 @@
             <span>Projetos</span>
         </div>
         <div class="desktop-icon" onclick="openWindow('certificacoes')">
-            <i class="bx bx-certification"></i>
+            <i class="bx bx-award"></i>
             <span>Certificações</span>
         </div>
         <div class="desktop-icon" onclick="openWindow('habilidades')">
@@ -184,76 +170,35 @@
         </div>
     </div>
 
-    <!-- Janelas --><div id="sobre-mim" class="window">
-    <div class="window-header">
-        <img src="sua-imagem.jpg" alt="Imagem de Dione Castro Alves" class="window-image">
-        <span>Sobre Mim</span>
-        <div class="controls">
-            <span onclick="closeWindow('sobre-mim')">✕</span>
+    <!-- Janelas -->
+    <div id="sobre-mim" class="window">
+        <div class="window-header">
+            <span>Sobre Mim</span>
+            <div class="controls">
+                <span onclick="closeWindow('sobre-mim')">✕</span>
+            </div>
         </div>
-    </div>
-    <div class="window-content">
-        <section id="about" class="about">
+        <div class="window-content">
             <h2>Sobre Mim</h2>
             <p>Olá! Sou <strong>Dione Castro Alves</strong>, especialista em desenvolvimento de software, inovação tecnológica e soluções personalizadas. Como fundador da <strong>InNovaIdeia</strong>, ajudo empresas a alcançar seu máximo potencial por meio da tecnologia, oferecendo consultoria, treinamento e desenvolvimento de soluções que impactam.</p>
             <p>Tenho ampla experiência com tecnologias como Python, Flask, React, Docker e bancos de dados como SQLite e PostgreSQL. Também aplico inteligência artificial ao varejo, personalizando experiências e prevendo tendências. Meu objetivo é sempre oferecer soluções inovadoras e escaláveis que transformem ideias em realidade.</p>
-        </section>
-    </div>
-</div>
-
-<div id="projetos" class="window">
-    <div class="window-header">
-        <span>Projetos</span>
-        <div class="controls">
-            <span onclick="closeWindow('projetos')">✕</span>
         </div>
     </div>
-    <div class="window-content">
-        <section id="projects" class="projects">
-            <h2>Meus Projetos</h2>
 
-            <div class="project-card">
-                <button onclick="toggleDescription(this)">Gerenciador de Funcionários</button>
-                <div class="description" style="display: none;">
-                    <p>Gerenciador de Dados dos Funcionários em Python usando Tkinter e SQLite.</p>
-                    <a href="https://github.com/Foxactive1/Projeto" target="_blank">Ver no GitHub</a>
-                </div>
+    <div id="projetos" class="window">
+        <div class="window-header">
+            <span>Projetos</span>
+            <div class="controls">
+                <span onclick="closeWindow('projetos')">✕</span>
             </div>
-
-            <div class="project-card">
-                <button onclick="toggleDescription(this)">Sistema Bancário em Python</button>
-                <div class="description" style="display: none;">
-                    <p>Sistema Bancário Simples desenvolvido em Python para gerenciamento básico de contas.</p>
-                    <a href="https://github.com/Foxactive1/banco" target="_blank">Ver no GitHub</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <button onclick="toggleDescription(this)">Lista de Tarefas em HTML</button>
-                <div class="description" style="display: none;">
-                    <p>Aplicação web simples de Lista de Tarefas, construída utilizando HTML, CSS (com Bootstrap) e JavaScript.</p>
-                    <a href="https://github.com/Foxactive1/HTML-E-CIA/tree/main/Lista_de_tarefas" target="_blank">Ver no GitHub</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <button onclick="toggleDescription(this)">Knowledge-Base-API</button>
-                <div class="description" style="display: none;">
-                    <p>Aplicação em Flask para consultar informações sobre linguagens de programação.</p>
-                    <a href="https://github.com/Foxactive1/Knowledge-Base-API" target="_blank">Ver no GitHub</a>
-                </div>
-            </div>
-        </section>
+        </div>
+        <div class="window-content">
+            <h2>Projetos</h2>
+            <button class="project-button">Projeto 1</button>
+            <button class="project-button">Projeto 2</button>
+            <button class="project-button">Projeto 3</button>
+        </div>
     </div>
-</div>
-
-<script>
-    function toggleDescription(button) {
-        const description = button.nextElementSibling;
-        const isVisible = description.style.display === 'block';
-        description.style.display = isVisible ? 'none' : 'block';
-    }
-</script>
 
     <div id="certificacoes" class="window">
         <div class="window-header">
@@ -271,7 +216,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> 
 
     <div id="habilidades" class="window">
         <div class="window-header">
@@ -281,13 +226,8 @@
             </div>
         </div>
         <div class="window-content">
-            <div class="content">
-                <ul>
-                    <li>Programação em Python, JavaScript e PHP.</li>
-                    <li>Desenvolvimento Front-end e Back-end.</li>
-                    <li>Gestão de projetos e liderança.</li>
-                </ul>
-            </div>
+            <h2>Habilidades</h2>
+            <p>Python, Flask, React, Docker, SQLite, PostgreSQL, Inteligência Artificial, Análise de Dados, Metodologias Ágeis.</p>
         </div>
     </div>
 
@@ -297,12 +237,12 @@
             <i class="bx bx-windows"></i>
             <span>Iniciar</span>
         </div>
-        <div class="clock" id="clock">00:00</div>
+        <div id="clock">00:00</div>
     </div>
 
-    <!-- Menu iniciar -->
+    <!-- Menu Iniciar -->
     <div class="start-menu-content" id="start-menu">
-        <button onclick="openWindow('sobre')">Sobre mim</button>
+        <button onclick="openWindow('sobre-mim')">Sobre mim</button>
         <button onclick="openWindow('projetos')">Projetos</button>
         <button onclick="openWindow('certificacoes')">Certificações</button>
         <button onclick="openWindow('habilidades')">Habilidades</button>
@@ -311,11 +251,21 @@
 
     <script>
         function openWindow(id) {
-            document.getElementById(id).style.display = 'flex';
+            const windowElement = document.getElementById(id);
+            if (windowElement) {
+                windowElement.style.display = 'flex';
+            } else {
+                console.error(`Janela com ID '${id}' não encontrada.`);
+            }
         }
 
         function closeWindow(id) {
-            document.getElementById(id).style.display = 'none';
+            const windowElement = document.getElementById(id);
+            if (windowElement) {
+                windowElement.style.display = 'none';
+            } else {
+                console.error(`Janela com ID '${id}' não encontrada.`);
+            }
         }
 
         function toggleStartMenu() {
@@ -331,12 +281,6 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
-
-        function desligar() {
-            if (confirm("Deseja realmente desligar?")) {
-                window.close();
-            }
-        }
     </script>
 </body>
 
