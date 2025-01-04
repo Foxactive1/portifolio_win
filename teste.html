@@ -1,54 +1,121 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio - Windows XP Style</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-primary-subtle text-white">
-  <div id="desktop" class="position-relative vh-100">
-    <!-- Ícones na área de trabalho -->
-    <div class="icon text-center" onclick="openWindow('portfolio')" data-bs-toggle="tooltip" data-bs-placement="top" title="Portfólio">
-      <img src="https://cdn-icons-png.flaticon.com/512/189/189001.png" alt="Ícone Portfólio" class="img-fluid rounded">
-      <span>Portfólio</span>
+<style>/* Estilo para o container do card */
+    .project-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Estilo para o botão do card */
+    .project-btn {
+    background-color: #007BFF;
+    color: white;
+    font-size: 18px;
+    padding: 12px 20px;
+    width: 45%;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 8px 8px 0 0;
+    }
+    
+    .project-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    }
+
+    .project-card.expanded .description {
+    max-height: 500px; /* Pode ser ajustado conforme necessário */
+    padding: 15px;
+    }
+
+    /* Estilo para a descrição */
+    .description {
+    display: none;
+    padding: 15px;
+    background-color: #f8f9fa;
+    font-size: 14px;
+    color: #333;
+    border-top: 1px solid #ddd;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    }
+    .description p {
+      margin: 0 0 10px;
+    }
+    
+    /* Estilo para o link */
+    .btn-link {
+      display: inline-block;
+      background-color: #28a745;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn-link:hover {
+      background-color: #218838;
+    }
+</style>  
+<div id="projetos" class="window">
+    <div class="window-header">
+      <span>Projetos</span>
+      <div class="controls">
+        <span onclick="closeWindow('projetos')">✕</span>
+      </div>
+    </div>
+    <div class="window-content">
+      <h2>Projetos</h2>
+  
+      <div class="project-card">
+        <button onclick="toggleDescription(this)" class="project-btn">Lista_de_tarefas</button>
+        <div class="description">
+          <p>Sistema Bancário Simples desenvolvido em Python para gerenciamento básico de contas.</p>
+          <a href="https://github.com/Foxactive1/banco" target="_blank" class="btn-link">Ver no GitHub</a>
+        </div>
+      </div>
+      
+      
+  
+      <div class="project-card">
+        <button onclick="toggleDescription(this)" class="project-btn">Sistema Bancário em Python</button>
+        <div class="description">
+          <p>Sistema Bancário Simples desenvolvido em Python para gerenciamento básico de contas.</p>
+          <a href="https://github.com/Foxactive1/banco" target="_blank" class="btn-link">Ver no GitHub</a>
+        </div>
+      </div>
+      
+  
+      <div class="project-card">
+        <button onclick="toggleDescription(this)" class="project-btn">Sistema Bancário em Python</button>
+        <div class="description">
+          <p>Sistema Bancário Simples desenvolvido em Python para gerenciamento básico de contas.</p>
+          <a href="https://github.com/Foxactive1/banco" target="_blank" class="btn-link">Ver no GitHub</a>
+        </div>
+      </div>
+      
+  
+      <div class="project-card">
+        <button onclick="toggleDescription(this)" class="project-btn">Sistema Bancário em Python</button>
+        <div class="description">
+          <p>Sistema Bancário Simples desenvolvido em Python para gerenciamento básico de contas.</p>
+          <a href="https://github.com/Foxactive1/banco" target="_blank" class="btn-link">Ver no GitHub</a>
+        </div>
+      </div>
+      
+      </div>
     </div>
   </div>
-
-  <!-- Barra de tarefas -->
-  <div id="taskbar" class="bg-dark position-fixed bottom-0 w-100 d-flex align-items-center px-3 py-2">
-    <button id="start-button" class="btn btn-light btn-sm me-2" onclick="toggleStartMenu()">
-      <img src="https://cdn-icons-png.flaticon.com/512/888/888846.png" alt="Menu Iniciar" width="20">
-      Iniciar
-    </button>
-    <div id="taskbar-items" class="flex-grow-1 d-flex align-items-center"></div>
-  </div>
-
-  <!-- Menu Iniciar -->
-  <div id="start-menu" class="start-menu bg-light border rounded shadow p-3 position-absolute" style="display: none;">
-    <p class="fw-bold">Menu Iniciar</p>
-    <ul class="list-unstyled">
-      <li class="py-1"><a href="#" class="text-dark text-decoration-none" onclick="openWindow('portfolio')">Portfólio</a></li>
-      <li class="py-1"><a href="#" class="text-dark text-decoration-none">Sobre Mim</a></li>
-      <li class="py-1"><a href="#" class="text-dark text-decoration-none">Configurações</a></li>
-    </ul>
-  </div>
-
-  <!-- Janela de exemplo -->
-  <div class="window border rounded shadow bg-light text-dark" id="portfolio-window" style="display: none;">
-    <div class="window-header bg-primary text-white p-2 d-flex justify-content-between align-items-center">
-      <span>Portfólio</span>
-      <button class="btn btn-danger btn-sm" onclick="closeWindow('portfolio')">X</button>
-    </div>
-    <div class="window-content p-3">
-      <p>Bem-vindo ao meu portfólio! Aqui você encontra informações sobre meus projetos e habilidades.</p>
-    </div>
-  </div>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+  
