@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Estilo Windows</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+       /* Estilo geral **. /
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #1e90ff, #87cefa);
+    background-blend-mode: overlay; /* Suaviza o gradiente de fundo */
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para a área de ícones */
+.desktop {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    padding: 10px;
+    gap: 20px;
+}
+
+/* Estilo para cada ícone */
+.desktop-icon {
+    width: 90px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, color 0.3s ease; /* Transições mais suaves */
+}
+
+.desktop-icon i {
+    font-size: 40px;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease; /* Transição suave para rotação */
+}
+
+.desktop-icon span {
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Efeito hover nos ícones */
+.desktop-icon:hover {
+    transform: scale(1.1);
+    color: #f0f8ff;
+}
+
+.desktop-icon:hover i {
+    transform: rotate(5deg); /* Rotação mais suave */
+    color: #ffeb3b;
+}
+
+/* Adiciona foco para navegação com teclado */
+.desktop-icon:focus,
+.desktop-icon i:focus {
+    outline: 3px solid #ffeb3b;
+}
+
+/* Estilo para a janela */
+.window {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 70%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    resize: both;
+    overflow: auto;
+}
+
+/* Estilo para o cabeçalho da janela */
+.window-header {
+    background: #1e90ff;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: move;
+}
+
+/* Estilo para o conteúdo da janela */
+.window-content {
+    padding: 20px;
+    flex: 1;
+}
+
+/* Barra de tarefas */
+.taskbar {
+    height: 50px;
+    background: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* Menu de Início */
+.start-menu-content {
+    position: absolute;
+    bottom: 60px;
+    left: 20px;
+    width: 200px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+}
+
+/* Estilo dos botões no menu de início */
+.start-menu-content button {
+    background: none;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.start-menu-content button:hover {
+    background: #1e90ff;
+    color: white;
+}
+
+/* Botão de projeto */
+.project-button {
+    background: linear-gradient(to right, #4caf50, #81c784);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+    transition: background 0.3s, transform 0.3s ease; /* Transições mais suaves */
+}
+
+.project-button:hover {
+    background: linear-gradient(to right, #388e3c, #66bb6a);
+    transform: scale(1.05);
+}
+
+/* Estilo da lista */
+ul {
+    list-style: none; /* Remove os marcadores padrão */
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ícones personalizados antes de cada habilidade */
+li::before {
+    margin-right: 10px;
+}
+
+/* Ícones para as habilidades */
+li:nth-child(1)::before { content: '🐍'; } /* Python */
+li:nth-child(2)::before { content: '⚛️'; } /* JavaScript (React) */
+li:nth-child(3)::before { content: '🌐'; } /* HTML5, CSS3, Bootstrap */
+li:nth-child(4)::before { content: '🗄️'; } /* Bancos de Dados */
+li:nth-child(5)::before { content: '🤖'; } /* IA e ML */
+li:nth-child(6)::before { content: '🐳'; } /* Docker */
+li:nth-child(7)::before { content: '📱'; } /* Desenvolvimento Responsivo */
+
+/* Efeito ao passar o mouse sobre o item da lista */
+li:hover {
+    transform: scale(1.05); /* Leve aumento de escala */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Aumenta a sombra */
+}
+
+/* Estilo para os parágrafos */
+p {
+    background-color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    max-width: 800px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito ao passar o mouse sobre o parágrafo */
+p:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .desktop-icon {
+        width: 70px;
+    }
+    .desktop {
+        gap: 15px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Área de trabalho -->
+    <div class="desktop">
+        <div class="desktop-icon" onclick="openWindow('sobre-mim')">
+            <i class="bx bx-user"></i>
+            <span>Sobre mim</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('projetos')">
+            <i class="bx bx-folder"></i>
+            <span>Projetos</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('certificacoes')">
+            <i class="bx bx-award"></i>
+            <span>Certificações</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('habilidades')">
+            <i class="bx bx-brain"></i>
+            <span>Habilidades</span>
+        </div>
+    </div>
+
+    <!-- Janelas -->
+    <div id="sobre-mim" class="window">
+        <div class="window-header">
+            <span>Sobre Mim</span>
+            <div class="controls">
+                <span onclick="closeWindow('sobre-mim')">✕</span>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>Sobre Mim</h2>
+            <p>Olá! Sou <strong>Dione Castro Alves</strong>, especialista em desenvolvimento de software, inovação tecnológica e soluções personalizadas. Como fundador da <strong>InNovaIdeia</strong>, ajudo empresas a alcançar seu máximo potencial por meio da tecnologia, oferecendo consultoria, treinamento e desenvolvimento de soluções que impactam.</p>
+            <p>Tenho ampla experiência com tecnologias como Python, Flask, React, Docker e bancos de dados como SQLite e PostgreSQL. Também aplico inteligência artificial ao varejo, personalizando experiências e prevendo tendências. Meu objetivo é sempre oferecer soluções inovadoras e escaláveis que transformem ideias em realidade.</p>
+        </div>
+    </div>
+
+    <div id="projetos" class="window">
+        <div class="window-header">
+          <span>Projetos</span>
+          <div class="controls">
+            <span onclick="closeWindow('projetos')">✕</span>
+          </div>
+        </div>
+        <div class="window-content">
+          <h2>Projetos</h2>
+      
+          <div class="project-card">
+            <button onclick="toggleDescription(this)">Gerenciador de Funcionários</button>
+            <div class="description">
+              <p>Gerenciador de Dados dos Funcionários em Python usando Tkinter e SQLite.</p>
+              <a href="https://github.com/Foxactive1/Projeto" target="_blank">Ver no GitHub</a>
+            </div>
+          </div>
+      
+          <div class="project-card">
+            <button onclick="toggleDescription(this)">Sistema Bancário em Python</button>
+            <div class="description">
+              <p>Sistema Bancário Simples desenvolvido em Python para gerenciamento básico de contas.</p>
+              <a href="https://github.com/Foxactive1/banco" target="_blank">Ver no GitHub</a>
+            </div>
+          </div>
+      
+          <div class="project-card">
+            <button onclick="toggleDescription(this)">Lista de Tarefas em HTML</button>
+            <div class="description">
+              <p>Aplicação web simples de Lista de Tarefas, construída utilizando HTML, CSS (com Bootstrap) e JavaScript.</p>
+              <a href="https://github.com/Foxactive1/HTML-E-CIA/tree/main/Lista_de_tarefas" target="_blank">Ver no GitHub</a>
+            </div>
+          </div>
+      
+          <div class="project-card">
+            <button onclick="toggleDescription(this)">Knowledge-Base-API</button>
+            <div class="description">
+              <p>Aplicação em Flask para consultar informações sobre linguagens de programação.</p>
+              <a href="https://github.com/Foxactive1/Knowledge-Base-API" target="_blank">Ver no GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    <div id="certificacoes" class="window">
+        <div class="window-header">
+            <span>Certificações</span>
+            <div class="controls">
+                <span onclick="closeWindow('certificacoes')">✕</span>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="content">
+                <ul>
+                    <li>Desenvolvimento Full Stack (JavaScript, React, Flask, SQLite).</li>
+                    <li>Análise de Dados com Python (Pandas, NumPy, Matplotlib).</li>
+                    <li>Metodologias Ágeis (Scrum, Kanban).</li>
+                    <li>Consultoria em Inovação e Tecnologia.</li>
+                    <li>Implementação de Soluções em IA para Moda e Varejo.</li>
+                    <li>Desenvolvimento de Softwares Personalizados e Treinamentos Técnicos.</li>
+                    <li>Liderança e Coaching de Equipes Técnicas (PNL e Coaching).</li>
+                  </ul>
+                  
+            </div>
+        </div>
+    </div> 
+
+    <div id="habilidades" class="window">
+        <div class="window-header">
+            <span>Habilidades</span>
+            <div class="controls">
+                <span onclick="closeWindow('habilidades')">✕</span>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>Habilidades</h2>
+            <ul>
+                <li>Desenvolvimento Full Stack (JavaScript, React, Flask, SQLite).</li>
+                <li>Análise de Dados com Python (Pandas, NumPy, Matplotlib).</li>
+                <li>Metodologias Ágeis (Scrum, Kanban).</li>
+                <li>Consultoria em Inovação e Tecnologia.</li>
+                <li>Implementação de Soluções em IA para Moda e Varejo.</li>
+                <li>Desenvolvimento de Softwares Personalizados e Treinamentos Técnicos.</li>
+                <li>Liderança e Coaching de Equipes Técnicas (PNL e Coaching).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Barra de tarefas -->
+    <div class="taskbar">
+        <div class="start-menu" onclick="toggleStartMenu()">
+            <i class="bx bx-windows"></i>
+            <span>Iniciar</span>
+        </div>
+        <div id="clock">00:00</div>
+    </div>
+
+    <!-- Menu Iniciar -->
+    <div class="start-menu-content" id="start-menu">
+        <button onclick="openWindow('sobre-mim')">Sobre mim</button>
+        <button onclick="openWindow('projetos')">Projetos</button>
+        <button onclick="openWindow('certificacoes')">Certificações</button>
+        <button onclick="openWindow('habilidades')">Habilidades</button>
+        <button onclick="desligar()">Desligar</button>
+    </div>
+
+    <script>
+        function openWindow(id) {
+            const windowElement = document.getElementById(id);
+            if (windowElement) {
+                windowElement.style.display = 'flex';
+            } else {
+                console.error(`Janela com ID '${id}' não encontrada.`);
+            }
+        }
+
+        function closeWindow(id) {
+            const windowElement = document.getElementById(id);
+            if (windowElement) {
+                windowElement.style.display = 'none';
+            } else {
+                console.error(`Janela com ID '${id}' não encontrada.`);
+            }
+
+
+        }
+
+        function desligar() {
+      if (confirm("Deseja realmente fechar esta janela?")) {
+        window.close();
+      }
+    }
+
+        function toggleStartMenu() {
+            const menu = document.getElementById('start-menu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+
+</html>
